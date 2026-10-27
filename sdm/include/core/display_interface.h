@@ -186,6 +186,7 @@ enum QSyncMode {
   kQSyncModeContinuous,         // This is set by the client to enable qsync forever
   kQsyncModeOneShot,            // This is set by client to enable qsync only for current frame.
   kQsyncModeOneShotContinuous,  // This is set by client to enable qsync only for every commit.
+  kQSyncModeOplusAuto = 0x5cc18181,  // OPlus auto-ADFR; independent of standard QSync.
 };
 
 /*! @brief This enum represents different operating modes to submit a draw cycle to display.

@@ -715,6 +715,13 @@ enum struct DRMOps {
    *      PrivacyRegions - Consolidated privacy regions
    */
   CONNECTOR_SET_PRIVACY_REGIONS,
+  /*
+   * Op: Sets the OPlus ADFR control word on the connector's qsync_min_fps property.
+   * Arg: uint32_t - Connector ID
+   *      uint32_t - OPlus ADFR control word
+   * Append operations to preserve the existing DRM interface enum values.
+   */
+  CONNECTOR_SET_OPLUS_ADFR,
 };
 
 enum struct DRMRotation {

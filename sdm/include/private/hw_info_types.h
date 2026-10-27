@@ -844,6 +844,7 @@ enum {
   kUpdateAVRModeFlag,
   kUpdateAVRStepFlag,
   kUpdateAVRStepFpsFlag,
+  kUpdateOplusAdfrFlag,
   kUpdateAVRFlagMax,
 };
 

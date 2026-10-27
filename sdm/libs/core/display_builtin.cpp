@@ -2852,6 +2852,15 @@ DisplayError DisplayBuiltIn::GetQSyncMode(QSyncMode *qsync_mode) {
 DisplayError DisplayBuiltIn::SetQSyncMode(QSyncMode qsync_mode) {
   ClientLock lock(disp_mutex_);
 
+  if (qsync_mode == kQSyncModeOplusAuto) {
+    // Queue the OEM property in the normal display commit. Do not change the
+    // standard QSync state: doing so would prevent regular refresh-rate changes.
+    needs_avr_update_.set(kUpdateOplusAdfrFlag);
+    validated_ = false;
+    event_handler_->Refresh();
+    return kErrorNone;
+  }
+
   if (!client_ctx_.hw_panel_info.qsync_support) {
     DLOGW("Failed: qsync_support: %d", client_ctx_.hw_panel_info.qsync_support);
     return kErrorNotSupported;

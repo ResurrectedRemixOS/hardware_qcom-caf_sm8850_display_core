@@ -1328,6 +1328,17 @@ void DRMConnector::Perform(DRMOps code, drmModeAtomicReq *req, va_list args) {
                                reinterpret_cast<uint64_t>(hdr_metadata));
     } break;
 
+    case DRMOps::CONNECTOR_SET_OPLUS_ADFR: {
+      if (!prop_mgr_.IsPropertyAvailable(DRMProperty::OPLUS_ADFR_MIN_FPS)) {
+        DRM_LOGW("Connector %d: OPlus qsync_min_fps property is unavailable", obj_id);
+        return;
+      }
+      uint32_t adfr_mode = va_arg(args, uint32_t);
+      drmModeAtomicAddProperty(req, obj_id,
+                               prop_mgr_.GetPropertyId(DRMProperty::OPLUS_ADFR_MIN_FPS),
+                               adfr_mode);
+    } break;
+
     case DRMOps::CONNECTOR_SET_QSYNC_MODE: {
       if (!prop_mgr_.IsPropertyAvailable(DRMProperty::QSYNC_MODE)) {
         return;

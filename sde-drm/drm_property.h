@@ -286,6 +286,7 @@ enum struct DRMProperty {
   COLOR_MASK_OVERRIDE,
   EMSYNC_FPS,
   PRIVACY_REGIONS,
+  OPLUS_ADFR_MIN_FPS,
 
   // Insert above
   MAX

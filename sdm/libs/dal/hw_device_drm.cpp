@@ -2194,6 +2194,11 @@ void HWDeviceDRM::SetupAtomic(Fence::ScopedRef &scoped_ref, HWLayersInfo *hw_lay
     drm_atomic_intf_->Perform(DRMOps::CONNECTOR_SET_QSYNC_MODE, token_.conn_id, mode);
   }
 
+  if (hw_layers_info->common_info->hw_avr_info.update.test(kUpdateOplusAdfrFlag)) {
+    drm_atomic_intf_->Perform(DRMOps::CONNECTOR_SET_OPLUS_ADFR, token_.conn_id,
+                             static_cast<uint32_t>(kQSyncModeOplusAuto));
+  }
+
   if (hw_layers_info->common_info->hw_avr_info.update.test(kUpdateAVRStepFlag)) {
     sde_drm::DRMAvrStepState state = hw_layers_info->common_info->hw_avr_info.step_enabled
                                          ? sde_drm::DRMAvrStepState::ENABLE

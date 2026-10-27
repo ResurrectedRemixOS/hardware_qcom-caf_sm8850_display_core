@@ -194,6 +194,7 @@ DRMProperty DRMPropertyManager::GetPropertyEnum(const std::string &name) const {
   if (name == "sv_bl_scale") { return DRMProperty::SDE_DSPP_SV_BL_SCALE; }
   if (name == "capture_mode") { return DRMProperty::CAPTURE_MODE; }
   if (name == "qsync_mode") { return DRMProperty::QSYNC_MODE; }
+  if (name == "qsync_min_fps") { return DRMProperty::OPLUS_ADFR_MIN_FPS; }
   if (name == "idle_pc_state") { return DRMProperty::IDLE_PC_STATE; }
   if (name == "topology_control") { return DRMProperty::TOPOLOGY_CONTROL; }
   if (name == "EDID") { return DRMProperty::EDID; }
