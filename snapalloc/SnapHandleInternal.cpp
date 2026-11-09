@@ -9,10 +9,12 @@
 
 namespace snapalloc {
 
+// Stock (OPLUS) order: flags..custom_content_md_reserved_size sit at the
+// legacy private_handle_t offsets (format at +0x2c), view/width_in_bytes
+// after them. Vendor blobs (APS, the offline camera service) read the
+// handle directly.
 struct SnapHandleInternal::SnapHandleProperties {
-  uint32_t view;
   int flags;
-  int aligned_width_in_bytes;
   int aligned_width_in_pixels;
   int aligned_height;
   int unaligned_width;
@@ -29,6 +31,8 @@ struct SnapHandleInternal::SnapHandleProperties {
   uint64_t fb_id;
   unsigned reserved_size;
   unsigned custom_content_md_reserved_size;
+  uint32_t view;
+  int aligned_width_in_bytes;
   unsigned batch_mode_dyn_md_reserved_size;
   uint64_t pixel_format_modifier;
   uint64_t reserved_region_base;
